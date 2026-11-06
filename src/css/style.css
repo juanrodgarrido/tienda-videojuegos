@@ -1,7 +1,57 @@
-
-@media (min-width: 992px){
-
-.lado{    
-    flex: 1 1 0;
+:root {
+    --acento: #F26B1D;
+    --acento-oscuro: #D9580F;
 }
+
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Chakra Petch", sans-serif;
+}
+
+
+.hero {
+  background-size: cover;
+  background-position: 72% top;
+  min-height: 500px;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 40%),
+    url("/img/hero.jpg");
+}
+
+.btn-acento {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--acento);
+    --bs-btn-border-color: var(--acento);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--acento-oscuro);
+    --bs-btn-hover-border-color: var(--acento-oscuro);
+    --bs-btn-active-bg: var(--acento-oscuro);
+    --bs-btn-active-border-color: var(--acento-oscuro);
+}
+
+.precio{
+  color: var(--acento);
+}
+
+
+
+@media (min-width: 768px) {
+  .lado {
+    flex: 1 1 0;
+  }
+
+  
+}
+@media (max-width: 767px) {
+  .hero {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("/img/hero.jpg");
+  }
+
+ 
 }
