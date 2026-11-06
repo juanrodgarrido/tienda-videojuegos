@@ -34,7 +34,7 @@ if ($headerTransparente ?? false) {
             <a href="/" class="navbar-brand lado m-0">
                 <img src="/img/logo.svg" alt="Minimal Gaming" height="44">
             </a>
-            <div class="order-md-last justify-content-end ms-auto navbar-nav flex-row gap-3 lado">
+            <div class="order-md-last justify-content-end align-items-center ms-auto navbar-nav flex-row gap-3 lado">
                 <a class="nav-link" href="#" aria-label="Cesta">
                     <i class="bi bi-cart fs-4"></i>
                 </a>

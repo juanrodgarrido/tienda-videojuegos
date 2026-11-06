@@ -1,6 +1,6 @@
 :root {
-    --acento: #F26B1D;
-    --acento-oscuro: #D9580F;
+    --acento: #FF5400;
+    --acento-oscuro: #D94700;
 }
 
 
@@ -32,6 +32,11 @@ h1, h2, h3, h4, h5, h6 {
     --bs-btn-active-bg: var(--acento-oscuro);
     --bs-btn-active-border-color: var(--acento-oscuro);
 }
+
+.text-acento {
+    color: var(--acento);
+}
+
 
 .precio{
   color: var(--acento);
