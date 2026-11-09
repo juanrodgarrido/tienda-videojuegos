@@ -12,7 +12,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Chakra Petch", sans-serif;
 }
 
-
+.navbar{
+  --bs-navbar-color: #ffffff;
+  --bs-navbar-hover-color: var(--acento);
+  --bs-navbar-active-color: var(--acento-oscuro);
+}
 .hero {
   background-size: cover;
   background-position: 72% top;
@@ -37,11 +41,29 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--acento);
 }
 
+.borde-acento {
+  border-top: 3px solid var(--acento);
+}
+
 
 .precio{
   color: var(--acento);
 }
 
+.contenedor-estrecho{
+  max-width: 600px;
+}
+
+
+.invalid-feedback {
+  display: block;
+  visibility: hidden;
+  min-height: 1.5em;
+}
+
+.is-invalid ~ .invalid-feedback {
+  visibility: visible;
+}
 
 
 @media (min-width: 768px) {
