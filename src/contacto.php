@@ -83,7 +83,7 @@ require __DIR__ . "/../app/partials/header.php";
                 </ul>
             </div>
             <div class="col-lg-7">
-                <div class="card bg-black borde-acento">
+                <div class="card bg-black border-top border-3 borde-acento">
                     <div class="card-body p-4">
                         <form method="POST" novalidate id="form-contacto">
                             <div>

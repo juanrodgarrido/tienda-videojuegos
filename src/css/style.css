@@ -17,13 +17,22 @@ h1, h2, h3, h4, h5, h6 {
   --bs-navbar-hover-color: var(--acento);
   --bs-navbar-active-color: var(--acento-oscuro);
 }
-.hero {
+.hero, .hero-tienda{
   background-size: cover;
   background-position: 72% top;
   min-height: 500px;
   background-image:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 40%),
     url("/img/hero.jpg");
+}
+
+.hero-tienda{  
+  background-size: cover;
+  background-position: 72% top;
+  min-height: 500px;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 40%),
+    url("/img/hero-tienda.jpg");
 }
 
 .btn-acento {
@@ -42,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .borde-acento {
-  border-top: 3px solid var(--acento);
+  --bs-border-color: var(--acento);
 }
 
 
@@ -52,6 +61,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .contenedor-estrecho{
   max-width: 600px;
+}
+
+.input-cantidad {
+  width: 6rem;
 }
 
 
