@@ -4,8 +4,13 @@ require __DIR__ . "/conexion.php";
 
 $bd = obtenerBD();
 
-$coleccion = $bd->productos;
-$coleccion->deleteMany([]);
+if (!getenv("ADMIN_EMAIL") || !getenv("ADMIN_PASSWORD")) {
+    echo "Faltan datos del env para crear el admin\n";
+    exit;
+}
+
+$coleccionProductos = $bd->productos;
+$coleccionProductos->deleteMany([]);
 $productos = [
     [
         "nombre" => "Phantom Blade Zero",
@@ -69,7 +74,7 @@ $productos = [
         "imagen" => "https://gaming-cdn.com/images/products/21740/616x353/wardogs-pc-steam-cover.jpg?v=1794247200",
         "activo" => true,
         "destacado" => false,
-    ],    
+    ],
     [
         "nombre" => "Juego ejemplo",
         "descripcion" => "Este juego no debe salir por activo = false",
@@ -81,5 +86,30 @@ $productos = [
     ],
 ];
 
-$resultado = $coleccion->insertMany($productos);
+$resultado = $coleccionProductos->insertMany($productos);
 echo $resultado->getInsertedCount() . " productos insertados\n";
+
+
+$adminEmail = trim(mb_strtolower(getenv("ADMIN_EMAIL")));
+$adminPass = password_hash(getenv("ADMIN_PASSWORD"), PASSWORD_DEFAULT);
+
+$coleccionUsuarios = $bd->usuarios;
+$coleccionUsuarios->createIndex(['email' => 1], ['unique' => true]);
+try {
+    $coleccionUsuarios->insertOne([
+        'nombre' => "Administrador",
+        'email' => $adminEmail,
+        'password' => $adminPass,
+        'rol' => "admin"
+    ]);
+    echo "Admin creado\n";
+} catch (MongoDB\Driver\Exception\BulkWriteException $e) {
+    $codigoerror = $e->getCode();
+    if ($codigoerror === 11000) {
+        echo "El admin ya existe\n";
+    } else {
+        throw $e;
+    }
+}
+
+

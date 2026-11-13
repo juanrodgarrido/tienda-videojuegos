@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../app/auth.php';
 require __DIR__ . "/../app/conexion.php";
 require __DIR__ . "/../app/funciones.php";
 $bd = obtenerBD();

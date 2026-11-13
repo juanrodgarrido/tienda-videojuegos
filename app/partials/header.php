@@ -1,4 +1,5 @@
 <?php
+$usuario = usuarioActual();
 $claseNav = "bg-black";
 
 if ($headerTransparente ?? false) {
@@ -38,12 +39,31 @@ if ($headerTransparente ?? false) {
                 <a class="nav-link" href="#" aria-label="Cesta">
                     <i class="bi bi-cart fs-4"></i>
                 </a>
-                <a class="nav-link" href="#" aria-label="Mi cuenta">
-                    <i class="bi bi-person fs-3"></i>
-                </a>
+                <?php if ($usuario === null): ?>
+                    <a class="nav-link" href="/login.php" aria-label="Iniciar sesión">
+                        <i class="bi bi-person fs-3"></i>
+                    </a>
+                <?php else: ?>
+                    <div class="dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mi cuenta">
+                            <i class="bi bi-person-fill fs-3"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><span class="dropdown-item-text">Hola, <?=htmlspecialchars($usuario['nombre']) ?></span></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="POST" action="/logout.php">
+                                    <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                <?php endif; ?>
             </div>
-            <button type="button" class="navbar-toggler border-0 ms-3" data-bs-toggle="offcanvas"
-                data-bs-target="#menu" aria-label="Abrir menú">
+            <button type="button" class="navbar-toggler border-0 ms-3" data-bs-toggle="offcanvas" data-bs-target="#menu"
+                aria-label="Abrir menú">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end flex-md-grow-0" tabindex="-1" id="menu">

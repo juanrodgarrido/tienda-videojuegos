@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../app/auth.php';
 $titulo = "Contacto";
 $nombre = "";
 $email = "";

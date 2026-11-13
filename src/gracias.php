@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../app/auth.php';
 $titulo = "Mensaje enviado";
 require __DIR__ . "/../app/partials/header.php";
 ?>
