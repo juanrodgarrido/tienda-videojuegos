@@ -1,6 +1,8 @@
 <?php
 $usuario = usuarioActual();
 $totalCarrito = array_sum($_SESSION['cesta'] ?? []);
+$aviso = $_SESSION['aviso'] ?? null;
+unset($_SESSION['aviso']);
 $claseNav = "bg-black";
 
 if ($headerTransparente ?? false) {
@@ -93,3 +95,12 @@ if ($headerTransparente ?? false) {
             </div>
         </div>
     </nav>
+    <?php if ($aviso !== null): ?>
+        <div class="aviso-flotante">
+            <div class="alert alert-<?= $aviso['tipo'] ?> alert-dismissible fade show" role="alert">
+                <p class="mb-0"><?= htmlspecialchars($aviso['texto']) ?></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        </div>
+
+    <?php endif; ?>

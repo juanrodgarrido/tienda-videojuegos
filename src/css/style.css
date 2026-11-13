@@ -1,23 +1,28 @@
 :root {
-    --acento: #FF5400;
-    --acento-oscuro: #D94700;
+  --acento: #ff5400;
+  --acento-oscuro: #d94700;
 }
-
 
 body {
-    font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Chakra Petch", sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Chakra Petch", sans-serif;
 }
 
-.navbar{
+.navbar {
   --bs-navbar-color: #ffffff;
   --bs-navbar-hover-color: var(--acento);
   --bs-navbar-active-color: var(--acento-oscuro);
 }
-.hero, .hero-tienda{
+.hero,
+.hero-tienda {
   background-size: cover;
   background-position: 72% top;
   min-height: 500px;
@@ -26,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
     url("/img/hero.jpg");
 }
 
-.hero-tienda{  
+.hero-tienda {
   background-size: cover;
   background-position: 72% top;
   min-height: 500px;
@@ -36,37 +41,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-acento {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: var(--acento);
-    --bs-btn-border-color: var(--acento);
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--acento-oscuro);
-    --bs-btn-hover-border-color: var(--acento-oscuro);
-    --bs-btn-active-bg: var(--acento-oscuro);
-    --bs-btn-active-border-color: var(--acento-oscuro);
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--acento);
+  --bs-btn-border-color: var(--acento);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--acento-oscuro);
+  --bs-btn-hover-border-color: var(--acento-oscuro);
+  --bs-btn-active-bg: var(--acento-oscuro);
+  --bs-btn-active-border-color: var(--acento-oscuro);
+}
+
+.aviso-flotante {
+  position: absolute;
+  top: 5rem;
+  right: 1.5rem;
+  width: max-content;
+  max-width: 90vw;
+  z-index: 1050;
 }
 
 .text-acento {
-    color: var(--acento);
+  color: var(--acento);
 }
 
 .borde-acento {
   --bs-border-color: var(--acento);
 }
 
-
-.precio{
+.precio {
   color: var(--acento);
 }
 
-.contenedor-estrecho{
+.contenedor-estrecho {
   max-width: 600px;
 }
 
 .input-cantidad {
   width: 6rem;
 }
-
 
 .invalid-feedback {
   display: block;
@@ -78,13 +90,10 @@ h1, h2, h3, h4, h5, h6 {
   visibility: visible;
 }
 
-
 @media (min-width: 768px) {
   .lado {
     flex: 1 1 0;
   }
-
-  
 }
 @media (max-width: 767px) {
   .hero {
@@ -92,6 +101,4 @@ h1, h2, h3, h4, h5, h6 {
       linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
       url("/img/hero.jpg");
   }
-
- 
 }
