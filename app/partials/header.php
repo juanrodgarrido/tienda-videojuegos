@@ -1,5 +1,6 @@
 <?php
 $usuario = usuarioActual();
+$totalCarrito = array_sum($_SESSION['cesta'] ?? []);
 $claseNav = "bg-black";
 
 if ($headerTransparente ?? false) {
@@ -36,8 +37,12 @@ if ($headerTransparente ?? false) {
                 <img src="/img/logo.svg" alt="Minimal Gaming" height="44">
             </a>
             <div class="order-md-last justify-content-end align-items-center ms-auto navbar-nav flex-row gap-3 lado">
-                <a class="nav-link" href="#" aria-label="Cesta">
+                <a class="nav-link position-relative" href="/cesta.php" aria-label="Cesta">
                     <i class="bi bi-cart fs-4"></i>
+                    <?php if ($totalCarrito > 0): ?>
+                        <span
+                            class="badge position-absolute start-100 translate-middle rounded-pill bg-danger"><?= $totalCarrito ?></span>
+                    <?php endif; ?>
                 </a>
                 <?php if ($usuario === null): ?>
                     <a class="nav-link" href="/login.php" aria-label="Iniciar sesión">
@@ -49,12 +54,13 @@ if ($headerTransparente ?? false) {
                             <i class="bi bi-person-fill fs-3"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><span class="dropdown-item-text">Hola, <?=htmlspecialchars($usuario['nombre']) ?></span></li>
+                            <li><span class="dropdown-item-text">Hola, <?= htmlspecialchars($usuario['nombre']) ?></span>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <form method="POST" action="/logout.php">
+                                <form method="POST" action="/actions/logout.php">
                                     <button type="submit" class="dropdown-item">Cerrar sesión</button>
                                 </form>
                             </li>

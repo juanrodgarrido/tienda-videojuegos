@@ -22,15 +22,16 @@ require __DIR__ . "/../app/partials/header.php";
                         <p class="lead text-body-secondary"><?= htmlspecialchars($destacado['descripcion']) ?></p>
                         <p class="precio fs-2 fw-bold"><?= formatearPrecio($destacado['precio']) ?></p>
                         <?php if ($destacado['stock'] > 0): ?>
-                            <div class="d-flex gap-3 align-items-end">
+                            <form method="POST" action="/actions/anadir-cesta.php" class="d-flex gap-3 align-items-end">
                                 <div>
+                                    <input type="hidden" name="id" value="<?= $destacado['_id'] ?>">
                                     <label for="cantidad-destacado" class="form-label">Cantidad</label>
                                     <input id="cantidad-destacado" name="cantidad"
                                         class="form-control form-control-lg input-cantidad" type="number" value="1" min="1"
                                         max="<?= $destacado['stock'] ?>">
                                 </div>
-                                <button class="btn btn-acento btn-lg" type="button">Añadir a la cesta</button>
-                            </div>
+                                <button class="btn btn-acento btn-lg" type="submit">Añadir a la cesta</button>
+                            </form>
 
                         <?php else: ?>
                             <button disabled class="btn btn-outline-secondary btn-lg">Agotado</button>
@@ -67,7 +68,7 @@ require __DIR__ . "/../app/partials/header.php";
                             <?php else: ?>
                                 <div class="ratio ratio-16x9 bg-secondary  card-img-top overflow-hidden">
                                     <img class="object-fit-cover" alt="<?= htmlspecialchars($producto['nombre']) ?>"
-                                        src="<?= htmlspecialchars($producto['imagen']) ?>">
+                                        src="<?= htmlspecialchars($producto['imagen']) ?>"> 
                                 </div>
                             <?php endif; ?>
                             <?php if ($producto['stock'] < 1): ?>
@@ -82,17 +83,20 @@ require __DIR__ . "/../app/partials/header.php";
                                 </div>
                                 <p class="text-body-secondary"><?= htmlspecialchars($producto['descripcion']) ?></p>
                                 <?php if ($producto['stock'] > 0): ?>
-                                    <div class="d-flex gap-2 align-items-center mt-auto">
+                                    <form method="POST" action="/actions/anadir-cesta.php"
+                                        class="d-flex gap-2 align-items-center mt-auto">
+                                        <input type="hidden" name="id" value="<?= $producto['_id'] ?>">
                                         <label for="cantidad-<?= $producto['_id'] ?>">Cant.</label>
                                         <input id="cantidad-<?= $producto['_id'] ?>" name="cantidad"
                                             class="form-control input-cantidad" type="number" value="1" min="1"
                                             max="<?= $producto['stock'] ?>">
-                                        <button class="btn btn-acento flex-grow-1" type="button">Añadir</button>
+                                        <button class="btn btn-acento flex-grow-1" type="submit">Añadir</button>
 
-                                    </div>
+                                    </form>
 
                                 <?php else: ?>
-                                    <button disabled class="btn btn-outline-secondary w-100 opacity-100 mt-auto">Agotado</button>
+                                    <button disabled
+                                        class="btn btn-outline-secondary w-100 opacity-100 mt-auto">Agotado</button>
                                 <?php endif; ?>
                             </div>
                         </div>

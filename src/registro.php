@@ -7,6 +7,11 @@ $email = "";
 $nombre = "";
 $bd = obtenerBD();
 
+if (usuarioActual() !== null) {
+    header('Location: /');
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mb_strtolower(trim($_POST['email'] ?? ''));
     $password = $_POST['password'] ?? '';

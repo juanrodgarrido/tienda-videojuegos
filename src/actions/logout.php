@@ -1,9 +1,9 @@
 <?php
-require __DIR__ . '/../app/auth.php';
+require __DIR__ . '/../../app/auth.php';
 
 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || usuarioActual() !== null) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: /');
     exit;
 }
