@@ -5,6 +5,7 @@ $titulo = "Iniciar sesión";
 $errores = [];
 $email = "";
 
+
 if (usuarioActual() !== null) {
     header('Location: /');
     exit;
@@ -36,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'nombre' => $usuario['nombre'],
                 'rol' => $usuario['rol'],
             ];
-            header('Location: /');
+            $destino = $_SESSION['destino'] ?? '/';
+            unset($_SESSION['destino']);
+            header('Location: ' . $destino);
             exit;
         }
 

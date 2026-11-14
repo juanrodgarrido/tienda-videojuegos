@@ -93,8 +93,10 @@ require __DIR__ . "/../app/partials/header.php";
                                 <div class="d-flex justify-content-between align-items-baseline mb-4">
                                     <span>Total</span>
                                     <span class="precio fs-3 fw-bold"><?= formatearPrecio($total) ?></span>
-                                </div>
-                                <button type="button" class="btn btn-acento btn-lg w-100 mb-2">Comprar</button>
+                                </div>  
+                                <form action = "/actions/comprar.php" method="POST">
+                                    <button type="submit" class="btn btn-acento btn-lg w-100 mb-2">Comprar</button>                                     
+                                </form>                                    
                                 <a href="/tienda.php" class="btn btn-outline-secondary w-100">Seguir comprando</a>
                             </div>
                         </div>

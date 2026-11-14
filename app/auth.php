@@ -8,3 +8,12 @@ session_start([
 function usuarioActual(){
     return $_SESSION['usuario'] ?? null;
 }
+
+function exigirLogin($destino){
+    if(usuarioActual() === null){
+        $_SESSION['destino'] = $destino;
+        $_SESSION['aviso'] = ['tipo' => 'warning', 'texto' => 'Tienes que iniciar sesión para continuar'];
+        header('Location: /login.php');        
+        exit;
+    }
+}
