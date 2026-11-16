@@ -80,7 +80,11 @@ require __DIR__ . "/../app/partials/header.php";
         <div class="container">
             <div class="d-flex align-items-baseline justify-content-between border-bottom pb-3 mb-4">
                 <h2 class="text-uppercase mb-0">Catálogo</h2>
-                <span class="text-body-secondary">Lo último, primero</span>
+                <?php if($esAdmin):?>
+                    <a href = "/admin/producto.php" class = "btn btn-acento">Añadir producto</a>
+                <?php else: ?>
+                    <span class="text-body-secondary">Lo último, primero</span>
+                    <?php endif; ?>
             </div>
             <div class="row g-4">
                 <?php foreach ($rejilla as $producto): ?>
