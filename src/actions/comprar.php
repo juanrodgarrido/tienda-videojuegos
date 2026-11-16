@@ -31,6 +31,7 @@ $coleccion = $bd->productos;
 
 $descontadas = [];
 $sinStock = [];
+$eliminados = [];
 
 foreach ($cesta as $clave => $cantidad) {
     $resultado = $coleccion->updateOne(
@@ -44,21 +45,36 @@ foreach ($cesta as $clave => $cantidad) {
     if ($resultado->getModifiedCount() === 1) {
         $descontadas[$clave] = $cantidad;
     } else {
-        $juegoSinStock = $coleccion->findOne(["_id" => new MongoDB\BSON\ObjectId($clave)]);
-        $sinStock[] = $juegoSinStock['nombre'];
+        $juego = $coleccion->findOne(["_id" => new MongoDB\BSON\ObjectId($clave)]);
 
-
+        if ($juego === null || $juego['activo'] === false) {
+            unset($_SESSION['cesta'][$clave]);
+            $eliminados[] = $juego === null ? 'un producto que ya no existe' : $juego['nombre'];
+        } else {
+            $sinStock[] = $juego['nombre'];
+        }
     }
+
 }
 
-if (count($sinStock) > 0) {
+
+if (count($sinStock) > 0 || count($eliminados) > 0) {
     foreach ($descontadas as $claveDescontada => $cantidadDescontada) {
         $coleccion->updateOne(
             ["_id" => new MongoDB\BSON\ObjectId($claveDescontada)],
             ['$inc' => ['stock' => $cantidadDescontada]]
         );
     }
-    $_SESSION['aviso'] = ['tipo' => 'warning', 'texto' => 'No hay suficiente stock de ' . implode(', ', $sinStock)];
+    $texto = '';
+
+    if (count($eliminados) > 0) {
+        $texto .= 'Se han quitado de tu cesta porque ya no están disponibles: ' . implode(', ', $eliminados) . '. ';
+    }
+    if (count($sinStock) > 0) {
+        $texto .= 'No hay suficiente stock de ' . implode(', ', $sinStock) . '.';
+    }
+
+    $_SESSION['aviso'] = ['tipo' => 'warning', 'texto' => $texto];
 
     header('Location: /cesta.php');
     exit;
