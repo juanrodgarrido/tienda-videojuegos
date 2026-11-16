@@ -80,6 +80,8 @@ h6 {
   width: 6rem;
 }
 
+.boton-igual { flex: 1 1 0; }
+
 .invalid-feedback {
   display: block;
   visibility: hidden;

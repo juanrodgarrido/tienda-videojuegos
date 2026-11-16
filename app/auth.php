@@ -17,3 +17,13 @@ function exigirLogin($destino){
         exit;
     }
 }
+
+function exigirAdmin(){
+    exigirLogin("/tienda.php");
+    if(usuarioActual()['rol'] !== "admin"){
+        $_SESSION['aviso'] = ['tipo' => 'warning', 'texto' => 'Necesitas permisos de administrador'];
+        header('Location: /');
+        exit;
+    }
+    
+}
