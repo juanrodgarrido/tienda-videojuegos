@@ -88,6 +88,10 @@ h6 {
   min-height: 1.5em;
 }
 
+.col-numero {
+  width: 8rem;
+}
+
 .is-invalid ~ .invalid-feedback {
   visibility: visible;
 }

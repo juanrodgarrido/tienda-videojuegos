@@ -64,6 +64,15 @@ if ($headerTransparente ?? false) {
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <?php if($esAdmin): ?>
+                            <li>
+                                <a href = "/admin/solicitudes.php" class="dropdown-item">Solicitudes</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <?php endif; ?>
+                            
                             <li>
                                 <form method="POST" action="/actions/logout.php">
                                     <button type="submit" class="dropdown-item">Cerrar sesión</button>
