@@ -1,5 +1,6 @@
 <?php
 $usuario = usuarioActual();
+$esAdmin = ($usuario['rol'] ?? null) === 'admin';
 $totalCarrito = array_sum($_SESSION['cesta'] ?? []);
 $aviso = $_SESSION['aviso'] ?? null;
 unset($_SESSION['aviso']);
@@ -39,6 +40,7 @@ if ($headerTransparente ?? false) {
                 <img src="/img/logo.svg" alt="Minimal Gaming" height="44">
             </a>
             <div class="order-md-last justify-content-end align-items-center ms-auto navbar-nav flex-row gap-3 lado">
+                <?php if(!$esAdmin):?>
                 <a class="nav-link position-relative" href="/cesta.php" aria-label="Cesta">
                     <i class="bi bi-cart fs-4"></i>
                     <?php if ($totalCarrito > 0): ?>
@@ -46,6 +48,7 @@ if ($headerTransparente ?? false) {
                             class="badge position-absolute start-100 translate-middle rounded-pill bg-danger"><?= $totalCarrito ?></span>
                     <?php endif; ?>
                 </a>
+                <?php endif; ?>
                 <?php if ($usuario === null): ?>
                     <a class="nav-link" href="/login.php" aria-label="Iniciar sesión">
                         <i class="bi bi-person fs-3"></i>
