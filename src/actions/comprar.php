@@ -103,5 +103,5 @@ $bd->pedidos->insertOne([
 ]);
 unset($_SESSION['cesta']);
 $_SESSION['aviso'] = ['tipo' => 'success', 'texto' => 'Pedido realizado. Está pendiente de que lo revise la tienda'];
-header('Location: /');
+header('Location: /perfil.php');
 exit;
